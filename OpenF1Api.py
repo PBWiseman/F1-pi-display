@@ -1,4 +1,5 @@
-# When on a new computer: Run python -m pip install requests
+# When on a new computer: pip install requests
+# If not try Run python -m pip install requests
 # If this doesn't work check https://pypi.org/project/requests/
 # payload = {'key1': 'value1', 'key2': ['value2', 'value3']} Can use a list of items as a value
 # https://openf1.org/ for more information on the API
@@ -46,12 +47,15 @@ dict['we'] = 'weather'
 
 
 def main():
-    payload = {'meeting_key' : 'latest', 'session_type': 'Qualifying'}
-    quals = get_request(dict['se'], payload)
-    session_key = quals[-1]['session_key']
-    payload = {'meeting_key' : 'latest', 'session_key': session_key, 'driver_number' : 16}
-    r = get_request(dict['la'], payload)
+    payload = {'meeting_key' : 'latest', 'session_type': 'Qualifying'} #Getting the latest qualifying
+    meeting = get_request(dict['me'], {'year' : '2024'})
+    print(meeting)
     try:
+        quals = get_request(dict['se'], payload)
+        print('Qualifying:', quals)
+        session_key = quals[0]['session_key']
+        payload = {'meeting_key' : 'latest', 'session_key': session_key, 'driver_number' : 16}
+        r = get_request(dict['la'], payload)
         for lap in r:
             print('\n')
             if lap['is_pit_out_lap'] == 1:
