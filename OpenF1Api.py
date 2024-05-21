@@ -47,9 +47,17 @@ dict['we'] = 'weather'
 
 
 def main():
+    # payload = {'session_name': 'Qualifying'}
+    # quals = get_request(dict['se'], payload)
+    # for qual in quals:
+    #     payload = {'session_key' : qual, 'lap_number': 2, 'driver_number': 1}
+    #     lap = get_request(dict['la'], payload)
+    #     print(qual['circuit_short_name'])
+    #     print(lap)
+        # sector_print(lap['segments_sector_1'], 1)
+        # sector_print(lap['segments_sector_2'], 2)
+        # sector_print(lap['segments_sector_3'], 3)
     payload = {'meeting_key' : 'latest', 'session_type': 'Qualifying'} #Getting the latest qualifying
-    meeting = get_request(dict['me'], {'year' : '2024'})
-    print(meeting)
     try:
         quals = get_request(dict['se'], payload)
         print('Qualifying:', quals)
@@ -103,7 +111,10 @@ def get_request(endpoint, payload, time = 10):
     try:
         r = requests.get(BASE_URL + endpoint, params=payload, timeout = time)
         if r:
-            return r.json()
+            if r.json():
+                return r.json()
+            else:
+                print('Empty JSON')
         else :
             print('Empty Response')
     except requests.exceptions.Timeout:
