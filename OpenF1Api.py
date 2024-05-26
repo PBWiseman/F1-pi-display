@@ -62,22 +62,25 @@ def main():
         quals = get_request(dict['se'], payload)
         print('Qualifying:', quals)
         session_key = quals[0]['session_key']
-        payload = {'meeting_key' : 'latest', 'session_key': session_key, 'driver_number' : 16}
+        payload = {'meeting_key' : 'latest', 'session_key': session_key, 'driver_number' : 1}
         r = get_request(dict['la'], payload)
         for lap in r:
-            print('\n')
             if lap['is_pit_out_lap'] == 1:
                 print('Pit out lap')
-            elif not lap['segments_sector_3']: #If the last sector is empty it is a pit in lap
-                print('Pit in lap')
             else:
-                sector_print(lap['segments_sector_1'], 1)
-                print('Time:', lap['duration_sector_1'])
-                sector_print(lap['segments_sector_2'], 2)
-                print('Time:', lap['duration_sector_2'])
-                sector_print(lap['segments_sector_3'], 3)
-                print('Time:', lap['duration_sector_3'])
-                print('Lap time:', lap['lap_duration'])
+                lap_purples = lap['segments_sector_1'].count(2051) + lap['segments_sector_2'].count(2051) + lap['segments_sector_3'].count(2051)
+                lap_purples = "Lap Purples: " + str(lap_purples)
+                print(lap_purples)
+                #print(lap['segments_sector_1'].count(2051))
+                #print(lap['segments_sector_2'].count(2051))
+                #print(lap['segments_sector_3'].count(2051))
+                # sector_print(lap['segments_sector_1'], 1)
+                # print('Time:', lap['duration_sector_1'])
+                # sector_print(lap['segments_sector_2'], 2)
+                # print('Time:', lap['duration_sector_2'])
+                # sector_print(lap['segments_sector_3'], 3)
+                # print('Time:', lap['duration_sector_3'])
+                # print('Lap time:', lap['lap_duration'])
     except:
         print('Error')
 
