@@ -12,18 +12,55 @@ void setup() {
   lcd.clear();
 }
 
-String message = "";
-
 void loop() {
+
+  if(Serial.available() > 0)
+  {
+    input();
+  }
+}
+
+void input()
+{
+  String message[6];
+  int i = 0;
   while(Serial.available() > 0)
   {
     char receivedChar = Serial.read();
-    message = message + receivedChar;
+    if(receivedChar == '&')
+    {
+      Serial.println("Received line: " + message[i]);
+      i++;
+      if(i > sizeof(message))
+      {
+        i == sizeof(message);
+      }
+    }
+    else
+    {
+      message[i] = message[i] + receivedChar;
+    }
   }
-  if (message != "" && Serial.available() == 0)
+  if (Serial.available() == 0)
   {
-      Serial.println("Message:" + message);
+      Serial.println("Received line: " + message[i]);
+      Serial.println("Done");
   }
-  lcd.setCursor(0,0);
-  lcd.print(message);
+  printToScreen(message);
+}
+
+void printToScreen(String input[6])
+{
+  for(int i = 0; i < 5; i++)
+  {
+    if(input[i] != "")
+    {
+      lcd.clear();
+      lcd.setCursor(0,0); 
+      lcd.print(input[i]);
+      lcd.setCursor(0,1);
+      lcd.print(input[i+1]);
+      delay(400);
+    }
+  }
 }
