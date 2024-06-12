@@ -47,6 +47,7 @@ dict['we'] = 'weather'
 
 
 def main():
+    print('Hello World')
     # payload = {'session_name': 'Qualifying'}
     # quals = get_request(dict['se'], payload)
     # for qual in quals:
@@ -57,32 +58,37 @@ def main():
         # sector_print(lap['segments_sector_1'], 1)
         # sector_print(lap['segments_sector_2'], 2)
         # sector_print(lap['segments_sector_3'], 3)
-    payload = {'meeting_key' : 'latest', 'session_type': 'Qualifying'} #Getting the latest qualifying
-    try:
-        quals = get_request(dict['se'], payload)
-        print('Qualifying:', quals)
-        session_key = quals[0]['session_key']
-        payload = {'meeting_key' : 'latest', 'session_key': session_key, 'driver_number' : 1}
-        r = get_request(dict['la'], payload)
-        for lap in r:
-            if lap['is_pit_out_lap'] == 1:
-                print('Pit out lap')
-            else:
-                lap_purples = lap['segments_sector_1'].count(2051) + lap['segments_sector_2'].count(2051) + lap['segments_sector_3'].count(2051)
-                lap_purples = "Lap Purples: " + str(lap_purples)
-                print(lap_purples)
-                #print(lap['segments_sector_1'].count(2051))
-                #print(lap['segments_sector_2'].count(2051))
-                #print(lap['segments_sector_3'].count(2051))
-                # sector_print(lap['segments_sector_1'], 1)
-                # print('Time:', lap['duration_sector_1'])
-                # sector_print(lap['segments_sector_2'], 2)
-                # print('Time:', lap['duration_sector_2'])
-                # sector_print(lap['segments_sector_3'], 3)
-                # print('Time:', lap['duration_sector_3'])
-                # print('Lap time:', lap['lap_duration'])
-    except:
-        print('Error')
+    # payload = {'meeting_key' : 'latest', 'session_type': 'Qualifying'} #Getting the latest qualifying
+    # try:
+    #     quals = get_request(dict['se'], payload)
+    #     print('Qualifying:', quals)
+    #     session_key = quals[0]['session_key']
+    #     payload = {'meeting_key' : 'latest', 'session_key': session_key, 'driver_number' : 1}
+    #     r = get_request(dict['la'], payload)
+    #     for lap in r:
+    #         if lap['is_pit_out_lap'] == 1:
+    #             print('Pit out lap')
+    #         else:
+    #             lap_purples = lap['segments_sector_1'].count(2051) + lap['segments_sector_2'].count(2051) + lap['segments_sector_3'].count(2051)
+    #             lap_purples = "Lap Purples: " + str(lap_purples)
+    #             print(lap_purples)
+    #             #print(lap['segments_sector_1'].count(2051))
+    #             #print(lap['segments_sector_2'].count(2051))
+    #             #print(lap['segments_sector_3'].count(2051))
+    #             # sector_print(lap['segments_sector_1'], 1)
+    #             # print('Time:', lap['duration_sector_1'])
+    #             # sector_print(lap['segments_sector_2'], 2)
+    #             # print('Time:', lap['duration_sector_2'])
+    #             # sector_print(lap['segments_sector_3'], 3)
+    #             # print('Time:', lap['duration_sector_3'])
+    #             # print('Lap time:', lap['lap_duration'])
+    # except:
+    #     print('Error')
+
+def get_driver(number):
+    payload = {'driver_number' : number}
+    driver = get_request(dict['dr'], payload)
+    return driver
 
 #Function to loop through a sector
 def sector_print(sector, sector_number):
