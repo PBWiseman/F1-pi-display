@@ -46,8 +46,8 @@ dict['te'] = 'team_radio'
 dict['we'] = 'weather'
 
 
-def main():
-    print('Hello World')
+#def main():
+#    print('Hello World')
     # payload = {'session_name': 'Qualifying'}
     # quals = get_request(dict['se'], payload)
     # for qual in quals:
@@ -88,7 +88,7 @@ def main():
 def get_driver(number):
     payload = {'driver_number' : number}
     driver = get_request(dict['dr'], payload)
-    return driver
+    return driver[-1]
 
 #Function to loop through a sector
 def sector_print(sector, sector_number):
@@ -135,4 +135,4 @@ def get_request(endpoint, payload, time = 10):
     except:
         print('Unknown error: ', r.status_code)
 
-main()
+#main()

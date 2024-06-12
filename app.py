@@ -7,7 +7,7 @@
 #Open ngrok and run: ngrok http --domain=fun-sharply-skylark.ngrok-free.app 80
 from flask import Flask
 from markupsafe import escape
-#import MVF1API;
+import MVF1API;
 import OpenF1Api;
 
 app = Flask(__name__)
@@ -19,3 +19,11 @@ def hello_world():
 @app.route("/driver/<number>")
 def show_driver(number):
     return OpenF1Api.get_driver(escape(number))
+
+@app.route("/players")
+def show_players():
+    if MVF1API.getAllPlayers(10):
+        return "Player already exists"
+    else:
+        #Open the window for the driver
+        return "Player does not exist"

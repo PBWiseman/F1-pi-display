@@ -32,81 +32,25 @@
 
 import requests
 from mvf1 import MultiViewerForF1
-BASE_URL = 'https://api.openf1.org/v1/'
+mvf1 = MultiViewerForF1()
 
-def main():
-    remote = MultiViewerForF1()
-    for player in remote.players:
-        print(player.state)
+#def openWindow(driverNumber):
+    #Take the driverNumber and open the window for that driver
 
+    
 
-# def main():
-#     payload = {'meeting_key' : 'latest', 'session_type': 'Qualifying'} #Getting the latest qualifying
-#     meeting = get_request(dict['me'], {'year' : '2024'})
-#     print(meeting)
-#     try:
-#         quals = get_request(dict['se'], payload)
-#         print('Qualifying:', quals)
-#         session_key = quals[0]['session_key']
-#         payload = {'meeting_key' : 'latest', 'session_key': session_key, 'driver_number' : 16}
-#         r = get_request(dict['la'], payload)
-#         for lap in r:
-#             print('\n')
-#             if lap['is_pit_out_lap'] == 1:
-#                 print('Pit out lap')
-#             elif not lap['segments_sector_3']: #If the last sector is empty it is a pit in lap
-#                 print('Pit in lap')
-#             else:
-#                 sector_print(lap['segments_sector_1'], 1)
-#                 print('Time:', lap['duration_sector_1'])
-#                 sector_print(lap['segments_sector_2'], 2)
-#                 print('Time:', lap['duration_sector_2'])
-#                 sector_print(lap['segments_sector_3'], 3)
-#                 print('Time:', lap['duration_sector_3'])
-#                 print('Lap time:', lap['lap_duration'])
-#     except:
-#         print('Error')
-
-# #Function to loop through a sector
-# def sector_print(sector, sector_number):
-#     print ('Sector', sector_number, ':')
-#     s = ''
-#     for i in sector:
-#         s += section_code(i) + ', '
-#     s = s.rstrip(', ')
-#     print(s)
-
-
-
-# #Function to convert section codes to colours
-# def section_code(code):
-#     match code:
-#         case 2048:
-#             return 'Y'
-#         case 2049:
-#             return 'G'
-#         case 2051:
-#             return 'P'
-#         case 0:
-#             return 'N/A'
-#         case _:
-#             return 'N/A'
-
-# # Function to get request from the API
-# def get_request(endpoint, payload, time = 10):
-#     try:
-#         r = requests.get(BASE_URL + endpoint, params=payload, timeout = time)
-#         if r:
-#             return r.json()
-#         else :
-#             print('Empty Response')
-#     except requests.exceptions.Timeout:
-#         print('Timeout error')
-#     except requests.exceptions.TooManyRedirects:
-#         print('Too many redirects')
-#     except requests.exceptions.RequestException as e:
-#         print('Request exception:', e)
-#     except:
-#         print('Unknown error: ', r.status_code)
-
-main()
+#Get all players and see if the requested driver is in the list
+def getAllPlayers(driverNumber):
+    players = mvf1.players
+    print(players[1].driver_data["driverNumber"])
+    for player in players:
+            try:
+                if player.driver_data["driverNumber"] == driverNumber:
+                    return True
+            except:
+                print("Not Driver")
+    # for player in players:
+    #     if player. == driverNumber:
+    #         print(player)
+    #         return player
+    return False
