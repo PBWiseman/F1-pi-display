@@ -34,23 +34,24 @@ import requests
 from mvf1 import MultiViewerForF1
 mvf1 = MultiViewerForF1()
 
-#def openWindow(driverNumber):
+def openWindow(driverNumber):
+    players = mvf1.players
+    players[0].content_id
     #Take the driverNumber and open the window for that driver
-
-    
+    mvf1.player_create(content_id = players[0].content_id, driver_number = driverNumber)
+    return True
 
 #Get all players and see if the requested driver is in the list
 def getAllPlayers(driverNumber):
-    players = mvf1.players
-    print(players[1].driver_data["driverNumber"])
-    for player in players:
-            try:
-                if player.driver_data["driverNumber"] == driverNumber:
-                    return True
-            except:
-                print("Not Driver")
-    # for player in players:
-    #     if player. == driverNumber:
-    #         print(player)
-    #         return player
-    return False
+    try:
+        players = mvf1.players
+        for player in players:
+                try:
+                    if player.driver_data["driverNumber"] == driverNumber:
+                        return True
+                except:
+                    print("Not Driver")
+        return False
+    except:
+        print("Error getting players. Multiviewer may not be running.")
+        return False

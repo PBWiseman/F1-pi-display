@@ -4,7 +4,7 @@
 #for debugging
 #flask run --debug
 #for connection to pi
-#Open ngrok and run: ngrok http --domain=fun-sharply-skylark.ngrok-free.app 80
+#Open ngrok and run: ngrok http --domain=fun-sharply-skylark.ngrok-free.app 5000
 from flask import Flask
 from markupsafe import escape
 import MVF1API;
@@ -16,14 +16,16 @@ app = Flask(__name__)
 def hello_world():
     return "<p>Hello, World!</p>"
 
-@app.route("/driver/<number>")
-def show_driver(number):
-    return OpenF1Api.get_driver(escape(number))
+# @app.route("/driver/<number>")
+# def show_driver(number):
+#     return OpenF1Api.get_driver(escape(number))
 
-@app.route("/players")
-def show_players():
-    if MVF1API.getAllPlayers(10):
+@app.route("/players/<number>")
+def show_players(number):
+    if MVF1API.getAllPlayers(int(escape(number))):
         return "Player already exists"
     else:
-        #Open the window for the driver
-        return "Player does not exist"
+        if MVF1API.openWindow(int(escape(number))):
+            return "Player opened"
+        else:
+            return "Error opening player. Multiviewer may not be running."
