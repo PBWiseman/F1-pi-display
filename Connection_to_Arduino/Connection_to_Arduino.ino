@@ -2,14 +2,27 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
-// Set the LCD address to 0x3F for a 16 chars and 2 line display
-LiquidCrystal_I2C lcd(0x27, 16, 2);
+LiquidCrystal_I2C screens[3] =
+{
+  LiquidCrystal_I2C(0x27, 16, 2),
+  LiquidCrystal_I2C(0x26, 16, 2),
+  LiquidCrystal_I2C(0x25, 16, 2)
+};
+
+int buttonPins[6] = {3,4,5,6,7,8};
 
 void setup() {
   Serial.begin(9600);
-  lcd.begin();
-  lcd.backlight();
-  lcd.clear();
+  for(int i = 0; i < 6; i++)
+  {
+    pinMode(buttonPins[i], INPUT_PULLUP);
+  }
+  for (int i = 0; i < 3; i++)
+  {
+    screens[i].begin();
+    screens[i].backlight();
+    screens[i].clear();
+  }
 }
 
 void loop() {
@@ -18,6 +31,13 @@ void loop() {
   {
     input();
   }
+  for(int i = 0; i < 6; i++)
+  {
+    if (digitalRead(buttonPins[i]) == LOW)
+    {
+      Serial.println(i);
+    }
+  } 
 }
 
 void input()
@@ -51,16 +71,15 @@ void input()
 
 void printToScreen(String input[6])
 {
-  for(int i = 0; i < 5; i++)
+  int line = 0;
+  for (int i = 0; i < 3; i++)
   {
-    if(input[i] != "")
-    {
-      lcd.clear();
-      lcd.setCursor(0,0); 
-      lcd.print(input[i]);
-      lcd.setCursor(0,1);
-      lcd.print(input[i+1]);
-      delay(400);
-    }
+    screens[i].clear();
+    screens[i].setCursor(0,0);
+    screens[i].print(input[line]);
+    line++;
+    screens[i].setCursor(0,1);
+    screens[i].print(input[line]);
+    line++;
   }
 }
