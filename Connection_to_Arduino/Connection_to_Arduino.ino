@@ -9,6 +9,8 @@ LiquidCrystal_I2C screens[3] =
   LiquidCrystal_I2C(0x25, 16, 2)
 };
 
+bool buttonStates[6] = {false, false, false, false, false, false};
+
 int buttonPins[6] = {3,4,5,6,7,8};
 
 void setup() {
@@ -33,9 +35,17 @@ void loop() {
   }
   for(int i = 0; i < 6; i++)
   {
-    if (digitalRead(buttonPins[i]) == LOW)
+    if (digitalRead(buttonPins[i]) == LOW && buttonStates[i] == false)
     {
       Serial.println(i);
+    }
+    if (digitalRead(buttonPins[i]) == LOW)
+    {
+      buttonStates[i] = true;
+    }
+    else
+    {
+      buttonStates[i] = false;
     }
   } 
 }
@@ -49,7 +59,6 @@ void input()
     char receivedChar = Serial.read();
     if(receivedChar == '&')
     {
-      Serial.println("Received line: " + message[i]);
       i++;
       if(i > sizeof(message))
       {
@@ -63,7 +72,6 @@ void input()
   }
   if (Serial.available() == 0)
   {
-      Serial.println("Received line: " + message[i]);
       Serial.println("Done");
   }
   printToScreen(message);
