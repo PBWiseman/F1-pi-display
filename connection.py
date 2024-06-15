@@ -1,5 +1,6 @@
 import serial
 import time
+import requests
 #If the arduino is plugged into a new port the /tty needs to change. Can check it when selecting ports on the arduino ide
 try:
     ser = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
@@ -21,18 +22,17 @@ def main():
         try:
             driverNum = ser.readline().decode('utf-8').strip()
             if driverNum:
-                print("Response from Arduino:", driverNum)
+                requests.get("http://fun-sharply-skylark.ngrok-free.app/players/" + driverNum, timeout=3)
                 driverNum = ""
+                #wait for 1 second to not spam the computer with requests
+                time.sleep(1)
         except:
-            print("Connection error. Arduino no longer reachable.")
-            break
+            driverNum = ""
 
 
 def sendToArduino(input):
     for line in input:
         output = line + "&"
-        #print(output)
-        #For some reason if I do this there is an decoding error on the response but not if I do b"test".
         ser.write(output.encode())
     time.sleep(2)
     response = ""
