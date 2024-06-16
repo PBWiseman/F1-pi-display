@@ -44,14 +44,14 @@ def openWindow(driverNumber):
     #Take the driverNumber and open the window for that driver
     try:
         #If the player is already created and is the same driver then do nothing
-        if createdPlayer != None and createdPlayer.driver_data["driverNumber"] == driverNumber:
-            return True
         if createdPlayer == None:
             createdPlayerID = mvf1.player_create(content_id = contentId, driver_number = driverNumber)
             time.sleep(1)
             mvf1.player_set_fullscreen(createdPlayerID, True)
             mvf1.player_sync_to_commentary(createdPlayerID, True)
             createdPlayer = mvf1.player(createdPlayerID)
+        elif createdPlayer.driver_data["driverNumber"] == driverNumber:
+            return True
         else:
             createdPlayer.switch_stream(drivers.getDriverTLA(driverNumber))
         return True
