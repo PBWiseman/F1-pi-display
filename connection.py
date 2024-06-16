@@ -18,13 +18,6 @@ except:
 def main():
     driversToUpdate = ["1", "4", "16", "14", "44", "81"]
     positions = [1, 2, 3, 4, 5, 6]
-    pos = 0
-    for driver in driversToUpdate:
-        drivers.setDriverPlace(driver, pos + 1)
-        drivers.setDriverScreenPosition(driver, pos)
-        drivers.formatDriver(driver)
-        input[pos] = drivers.formatDriver(driver)
-        pos += 1
     output = prepDrivers(driversToUpdate, positions)
     sendToArduino(output)
     waitForInput()
@@ -36,7 +29,7 @@ def prepDrivers(driversToUpdate, positions):
         drivers.setDriverPlace(driver, positions[pos])
         drivers.setDriverScreenPosition(driver, pos)
         drivers.formatDriver(driver)
-        input[pos] = drivers.formatDriver(driver)
+        output[pos] = drivers.formatDriver(driver)
         pos += 1
     return output
 
