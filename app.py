@@ -41,6 +41,7 @@ def show_sectors():
 def show_sectors_ordered():
     return MVF1API.getSectorTimesOrdered()
 
+@app.route("/sectors/top6")
 @app.route("/sectors/topsix")
 def update_drivers():
     return MVF1API.updateDrivers()
