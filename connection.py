@@ -16,7 +16,7 @@ except:
         print("Error: No port found")
 
 def main():
-    input = []
+    input = ["", "", "", "", "", ""]
     driversToUpdate = [1, 4, 16, 14, 44, 81]
     pos = 0
     for driver in driversToUpdate:
