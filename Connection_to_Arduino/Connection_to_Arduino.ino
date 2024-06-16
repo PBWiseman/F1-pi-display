@@ -6,7 +6,7 @@ LiquidCrystal_I2C screens[3] =
 {
   LiquidCrystal_I2C(0x27, 16, 2),
   LiquidCrystal_I2C(0x26, 16, 2),
-  LiquidCrystal_I2C(0x25, 16, 2)
+  LiquidCrystal_I2C(0x23, 16, 2)
 };
 
 bool buttonStates[6] = {false, false, false, false, false, false};
@@ -24,6 +24,10 @@ void setup() {
     screens[i].begin();
     screens[i].backlight();
     screens[i].clear();
+    screens[i].setCursor(0,0);
+    screens[i].print("Test");
+    screens[i].setCursor(0,1);
+    screens[i].print("Test");
   }
 }
 
@@ -54,26 +58,26 @@ void input()
 {
   String message[6];
   int i = 0;
-  while(Serial.available() > 0)
+  while(true)
   {
-    char receivedChar = Serial.read();
-    if(receivedChar == '&')
-    {
-      i++;
-      if(i > sizeof(message))
+    if(Serial.available() > 0)
+    { 
+      char receivedChar = Serial.read();
+      if (receivedChar == '@')
       {
-        i == sizeof(message);
+        break;
+      }
+      else if(receivedChar == '&')
+      {
+        i++;
+      }
+      else
+      {
+        message[i] = message[i] + receivedChar;
       }
     }
-    else
-    {
-      message[i] = message[i] + receivedChar;
-    }
   }
-  if (Serial.available() == 0)
-  {
-      Serial.println("Done");
-  }
+  Serial.println("Done");
   printToScreen(message);
 }
 
