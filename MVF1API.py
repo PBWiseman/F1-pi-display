@@ -9,6 +9,8 @@
 # https://pypi.org/project/mvf1/
 # https://github.com/f1multiviewer/issue-tracker/issues/337
 
+#For if I add a remaining time display: data > liveTimingState > ExtrapolatedClock > Remaining
+
 import requests
 import time
 import drivers
@@ -57,3 +59,39 @@ def openWindow(driverNumber):
         print(str(e))
         return False
     
+
+def getState():
+    return mvf1.live_timing_state
+
+
+def getSectorTimes():
+    try:
+        # Get live timing state from API
+        data = mvf1.live_timing_state
+        
+        if data is None:
+            return "Error: No timing data available."
+        
+        # Extract minisector codes for each driver
+        minisector_codes = {}
+
+        # Iterate over each driver's line
+        for driver_line in data['data']['liveTimingState']['TimingData']['Lines'].values():
+            driver_number = driver_line['RacingNumber']  # Assuming 'RacingNumber' is the driver's number
+            sectors = driver_line['Sectors']
+
+            # Initialize minisector codes list
+            minisector_codes[driver_number] = []
+
+            # Iterate over sectors to extract minisector codes
+            for sector in sectors:
+                segments = sector['Segments']
+                for segment in segments:
+                    minisector_code = segment['Status']
+                    minisector_codes[driver_number].append(minisector_code)
+
+        return minisector_codes
+    
+    except Exception as e:
+        print(f"Error fetching sector times: {str(e)}")
+        return "Error"

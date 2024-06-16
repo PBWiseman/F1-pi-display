@@ -29,3 +29,11 @@ def show_players(number):
             return "Problem opening player"
     except Exception as e:
         return str(e)
+    
+@app.route("/state")
+def show_state():
+    return MVF1API.getState()
+
+@app.route("/sectors")
+def show_sectors():
+    return MVF1API.getSectorTimes()
