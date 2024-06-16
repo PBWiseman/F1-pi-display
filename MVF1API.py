@@ -63,35 +63,87 @@ def openWindow(driverNumber):
 def getState():
     return mvf1.live_timing_state
 
+def updateDrivers():
+    sectorTimes = getSectorTimesOrdered()
+    if sectorTimes == "Error":
+        return sectorTimes
+    #Just need the top 6 since I only have 6 slots
+    top_6_drivers = sectorTimes[:6]
+    
+    top_6_info = []
+    for driver in top_6_drivers:
+        driver_info = {
+            'position': driver['position'],
+            'driver_number': driver['driver_number'],
+            'sectors': driver['sectors']
+        }
+        top_6_info.append(driver_info)
+
+    return top_6_info
+
+
+
+#The sorting method wasn't working well so I asked chatGPT to help. It took many back and forward attempts to get it working so it would take too long to list the exact prompts
+#The original request was to order it in the following priority
+# Least blue sectors
+# Most purple sectors
+# Most green sectors
+# Most sectors overall
+def getSectorTimesOrdered():
+    times = getSectorTimes()
+    if times == "Error":
+        return times
+    
+    driver_sector_info = []
+
+    for driver_number, driver_data in times.items():
+        minisector_codes = driver_data['Sectors']
+        # Filter out zero sectors
+        non_zero_sectors = [code for code in minisector_codes if code != 0]
+
+        # Count purple (2051), green (2049), blue (2064) sectors
+        purple_count = non_zero_sectors.count(2051)
+        green_count = non_zero_sectors.count(2049)
+        blue_count = non_zero_sectors.count(2064)
+        total_count = len(non_zero_sectors)
+
+        position = driver_data['Position']
+
+        driver_sector_info.append({
+            'driver_number': driver_number,
+            'position': position,
+            'driver_name': drivers.getDriverTLA(driver_number),
+            'purple_count': purple_count,
+            'green_count': green_count,
+            'blue_count': blue_count,
+            'total_count': total_count,
+            'sectors': non_zero_sectors
+        })
+
+    # Sort driver_sector_info list based on the specified priorities
+    sorted_driver_sector_info = sorted(driver_sector_info, key=lambda x: (x['blue_count'], -x['purple_count'], -x['green_count'], -x['total_count']))
+    return sorted_driver_sector_info
 
 def getSectorTimes():
     try:
-        # Get live timing state from API
         data = mvf1.live_timing_state
-        
         if data is None:
             return "Error: No timing data available."
-        
-        # Extract minisector codes for each driver
         minisector_codes = {}
-
-        # Iterate over each driver's line
         for driver_line in data['data']['liveTimingState']['TimingData']['Lines'].values():
-            driver_number = driver_line['RacingNumber']  # Assuming 'RacingNumber' is the driver's number
+            driver_number = driver_line['RacingNumber'] 
             sectors = driver_line['Sectors']
-
-            # Initialize minisector codes list
-            minisector_codes[driver_number] = []
-
-            # Iterate over sectors to extract minisector codes
+            position = driver_line['Line']
+            minisector_codes[driver_number] = {
+                'Sectors': [],
+                'Position': position
+            }
             for sector in sectors:
                 segments = sector['Segments']
                 for segment in segments:
                     minisector_code = segment['Status']
-                    minisector_codes[driver_number].append(minisector_code)
-
+                    minisector_codes[driver_number]['Sectors'].append(minisector_code)
         return minisector_codes
-    
     except Exception as e:
         print(f"Error fetching sector times: {str(e)}")
         return "Error"

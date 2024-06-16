@@ -8,7 +8,6 @@
 from flask import Flask
 from markupsafe import escape
 import MVF1API;
-import OpenF1Api;
 
 app = Flask(__name__)
 
@@ -37,3 +36,11 @@ def show_state():
 @app.route("/sectors")
 def show_sectors():
     return MVF1API.getSectorTimes()
+
+@app.route("/sectors/ordered")
+def show_sectors_ordered():
+    return MVF1API.getSectorTimesOrdered()
+
+@app.route("/sectors/topsix")
+def update_drivers():
+    return MVF1API.updateDrivers()
