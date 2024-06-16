@@ -1,7 +1,7 @@
 import serial
 import time
 import requests
-#If the arduino is plugged into a new port the /tty needs to change. Can check it when selecting ports on the arduino ide
+
 try:
     ser = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
     print("Connected on port /dev/ttyACM1")
@@ -24,8 +24,8 @@ def main():
             if driverNum:
                 requests.get("http://fun-sharply-skylark.ngrok-free.app/players/" + driverNum, timeout=3)
                 driverNum = ""
-                #wait for 1 second to not spam the computer with requests
-                time.sleep(1)
+                #wait for 2 seconds to not spam the computer with requests
+                time.sleep(2)
         except:
             driverNum = ""
 
