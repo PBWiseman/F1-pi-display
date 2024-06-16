@@ -22,10 +22,10 @@ def hello_world():
 
 @app.route("/players/<number>")
 def show_players(number):
-    if MVF1API.getAllPlayers(int(escape(number))):
-        return "Player already exists"
-    else:
+    try:
         if MVF1API.openWindow(int(escape(number))):
             return "Player opened"
         else:
-            return "Error opening player. Multiviewer may not be running."
+            return "Problem opening player"
+    except Exception as e:
+        return str(e)

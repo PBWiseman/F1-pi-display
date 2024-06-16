@@ -31,26 +31,30 @@
 # https://github.com/f1multiviewer/issue-tracker/issues/337
 
 import requests
+import time
+import drivers
 from mvf1 import MultiViewerForF1
 mvf1 = MultiViewerForF1()
+createdPlayerID = None
+createdPlayer = None
+players = mvf1.players
+contentId = players[0].content_id
 
 def openWindow(driverNumber):
-    players = mvf1.players
-    players[0].content_id
     #Take the driverNumber and open the window for that driver
     try:
-        mvf1.player_create(content_id = players[0].content_id, driver_number = driverNumber)
-    except:
+        #If the player is already created and is the same driver then do nothing
+        if createdPlayer != None and createdPlayer.driver_data["driverNumber"] == driverNumber:
+            return True
+        if createdPlayer == None:
+            createdPlayerID = mvf1.player_create(content_id = contentId, driver_number = driverNumber)
+            time.sleep(1)
+            mvf1.player_set_fullscreen(createdPlayerID, True)
+            mvf1.player_sync_to_commentary(createdPlayerID, True)
+            createdPlayer = mvf1.player(createdPlayerID)
+        else:
+            createdPlayer.switch_stream(drivers.getDriverTLA(driverNumber))
+        return True
+    except Exception as e:
+        print(str(e))
         return False
-    return True
-
-#Get all players and see if the requested driver is in the list
-def getAllPlayers(driverNumber):
-    players = mvf1.players
-    for player in players:
-        try:
-            if player.driver_data["driverNumber"] == driverNumber:
-                return True
-        except:
-            pass
-    return False
