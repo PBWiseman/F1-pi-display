@@ -1,6 +1,7 @@
 import serial
 import time
 import requests
+import drivers
 
 try:
     ser = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
@@ -15,14 +16,25 @@ except:
         print("Error: No port found")
 
 def main():
-    input = ["Line 1", "Line 2", "Line 3", "Line 4", "Line 5", "Line 6"]
+    input = []
+    driversToUpdate = [1, 4, 16, 14, 44, 81]
+    pos = 0
+    for driver in driversToUpdate:
+        drivers.setDriverPlace(driver, pos + 1)
+        drivers.setDriverScreenPosition(driver, pos)
+        drivers.formatDriver(driver)
+        input[pos] = drivers.formatDriver(driver)
+        pos += 1
     sendToArduino(input)
-    driverNum = ""
+    screenPos = ""
     while(True):
         try:
-            driverNum = ser.readline().decode('utf-8').strip()
-            if driverNum:
-                requests.get("http://fun-sharply-skylark.ngrok-free.app/players/" + driverNum, timeout=3)
+            screenPos = ser.readline().decode('utf-8').strip()
+            if screenPos:
+                driverNum = drivers.getDriverNumber(screenPos)
+                if driverNum:
+                    requests.get("http://fun-sharply-skylark.ngrok-free.app/players/" + driverNum, timeout=3)
+                screenPos = ""
                 driverNum = ""
                 #wait for 2 seconds to not spam the computer with requests
                 time.sleep(2)
