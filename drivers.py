@@ -48,3 +48,9 @@ def setDriverScreenPosition(driver_number, screen_position):
             driver['screen_position'] = str(screen_position)
             return True
     return False
+
+def getDriverTLA(driver_number):
+    for driver in drivers:
+        if driver['driver_number'] == driver_number:
+            return driver['driver_tla']
+    return None
