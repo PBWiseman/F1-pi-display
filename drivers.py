@@ -32,7 +32,7 @@ def getDriverNumber(screen_position):
 def formatDriver(driver_number):
     for driver in drivers:
         if driver['driver_number'] == driver_number:
-            return f"P{str(driver['place']).ljust(2)} - {driver['team_tla']} - {driver['driver_tla']}"
+            return {'driver': f"P{str(driver['place']).ljust(2)} - {driver['team_tla']} - {driver['driver_tla']}", 'minisectors': driver['minisectors']}
     return None
 
 def getDriverTLA(driver_number):
