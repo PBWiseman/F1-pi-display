@@ -3,7 +3,7 @@
 #.venv\Scripts\activate
 #for debugging
 #flask run --debug
-#for connection to pi
+#for connection to pi that I can edit. without debug when I actually run it
 #Open ngrok and run: ngrok http --domain=fun-sharply-skylark.ngrok-free.app 5000
 from flask import Flask
 from markupsafe import escape
