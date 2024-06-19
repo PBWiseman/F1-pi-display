@@ -122,6 +122,9 @@ def getSectorTimesOrdered():
 
     # Sort driver_sector_info list based on the specified priorities
     sorted_driver_sector_info = sorted(driver_sector_info, key=lambda x: (x['blue_count'], -x['purple_count'], -x['green_count'], -x['total_count']))
+    #Remove all but the 5 most recent sectors
+    for driver in sorted_driver_sector_info:
+        driver['sectors'] = driver['sectors'][-5:]
     return sorted_driver_sector_info
 
 def getSectorTimes():
