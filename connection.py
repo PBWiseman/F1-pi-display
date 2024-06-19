@@ -2,6 +2,7 @@ import serial
 import time
 import requests
 import drivers
+import threading
 
 try:
     ser = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
@@ -16,28 +17,27 @@ except:
         print("Error: No port found")
 
 def main():
-    driversToUpdate = ["1", "4", "16", "14", "44", "81"]
-    positions = [1, 2, 3, 4, 5, 6]
-    getDrivers()
+    threading.Thread(target=run_Drivers_on_timer).start()
     driversToUpdate = prepDrivers(driversToUpdate, positions)
     sendToArduino(driversToUpdate)
     waitForInput()
 
-def getDrivers():
-    response = requests.get("http://fun-sharply-skylark.ngrok-free.app/sectors/topsix", timeout=5)
-    print(response.json())
-    return response.json()
+#Runs every second in the background to get the top 6 drivers
+def run_Drivers_on_timer():
+    while True:
+        getDrivers()
+        sendToArduino(prepDrivers())
+        time.sleep(1)
 
-def prepDrivers(driversToUpdate, positions):
-    output = ["", "", "", "", "", ""]
-    pos = 0
-    for driver in driversToUpdate:
-        drivers.setDriverPlace(driver, positions[pos])
-        drivers.setDriverScreenPosition(driver, pos)
-        drivers.formatDriver(driver)
-        output[pos] = drivers.formatDriver(driver)
-        pos += 1
-    return output
+def getDrivers():
+    try:
+        response = requests.get("http://fun-sharply-skylark.ngrok-free.app/sectors/topsix", timeout=5)
+        drivers.setTopSix(response.json())
+        return True
+    except Exception as e:
+        print(e)
+        return False
+
 
 def sendToArduino(driversToUpdate):
     for driver in driversToUpdate:
