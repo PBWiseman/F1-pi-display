@@ -89,11 +89,11 @@ def convertSectorCodes(minisector):
         
 def getTopSix():
     output = [{}, {}, {}, {}, {}, {}]
-    i = 0
     for driver in drivers:
-        if driver['screen_position'] == '':
-            continue
-        drivers.formatDriver(driver)
-        output[driver['screen_position']] = drivers.formatDriver(driver)
-        #needs to add sectors
+        if driver['screen_position'] != '':
+            drivers.formatDriver(driver)
+            output[driver['screen_position']] = drivers.formatDriver(driver) + "%"
+            for mini in driver['minisectors']:
+                output[driver['screen_position']] += mini
+            output[driver['screen_position']] += "&"
     return output

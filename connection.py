@@ -18,16 +18,14 @@ except:
 
 def main():
     threading.Thread(target=run_Drivers_on_timer).start()
-    driversToUpdate = prepDrivers(driversToUpdate, positions)
-    sendToArduino(driversToUpdate)
     waitForInput()
 
 #Runs every second in the background to get the top 6 drivers
 def run_Drivers_on_timer():
     while True:
         getDrivers()
-        sendToArduino(prepDrivers())
-        time.sleep(1)
+        sendToArduino(drivers.getTopSix())
+        time.sleep(5)
 
 def getDrivers():
     try:
@@ -41,9 +39,8 @@ def getDrivers():
 
 def sendToArduino(driversToUpdate):
     for driver in driversToUpdate:
-        output = driver + "&"
-        print(output)
-        ser.write(output.encode())
+        print(driver)
+        ser.write(driver.encode())
         time.sleep(.1)
     ser.write("@".encode())
     time.sleep(2)
