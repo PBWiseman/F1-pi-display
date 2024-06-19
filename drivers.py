@@ -32,7 +32,7 @@ def getDriverNumber(screen_position):
 def formatDriver(driver_number):
     for driver in drivers:
         if driver['driver_number'] == driver_number:
-            return {'driver': f"P{str(driver['place']).ljust(2)} - {driver['team_tla']} - {driver['driver_tla']}", 'minisectors': driver['minisectors']}
+            return f"P{str(driver['place']).ljust(2)} - {driver['team_tla']} - {driver['driver_tla']}"
     return None
 
 def getDriverTLA(driver_number):
@@ -44,13 +44,18 @@ def getDriverTLA(driver_number):
 def setTopSix(driversToUpdate):
     try:
         # Create a list of available screen positions
-        available_positions = {0,1,2,3,4,5}
+        available_positions = [0,1,2,3,4,5]
+        driverNumbers = []
+        for drivers1 in driversToUpdate:
+            driverNumbers.append(drivers1['driver_number'])
+            
+        print(driversToUpdate)
 
         # Iterate over the drivers list
         for driverStored in drivers:
             driverStored['place'] = ''
             driverStored['minisectors'] = []
-            if driverStored['driver_number'] not in driversToUpdate['driver_number']:
+            if driverStored['driver_number'] not in driverNumbers:
                 driverStored['screen_position'] = ''
             else:
                 if driverStored['screen_position'] in available_positions:
@@ -88,12 +93,11 @@ def convertSectorCodes(minisector):
             return 'W'
         
 def getTopSix():
-    output = [{}, {}, {}, {}, {}, {}]
-    i = 0
+    output = ["","","","","",""]
     for driver in drivers:
-        if driver['screen_position'] == '':
-            continue
-        drivers.formatDriver(driver)
-        output[driver['screen_position']] = drivers.formatDriver(driver)
-        #needs to add sectors
+        if driver['screen_position'] != '':
+            output[int(driver['screen_position'])] = formatDriver(driver['driver_number']) + "%"
+            for mini in driver['minisectors']:
+                output[int(driver['screen_position'])] += mini
+            output[int(driver['screen_position'])] += "&"
     return output
