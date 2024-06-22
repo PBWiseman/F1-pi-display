@@ -11,14 +11,6 @@ import MVF1API;
 
 app = Flask(__name__)
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
-
-# @app.route("/driver/<number>")
-# def show_driver(number):
-#     return OpenF1Api.get_driver(escape(number))
-
 @app.route("/players/<number>")
 def show_players(number):
     try:
