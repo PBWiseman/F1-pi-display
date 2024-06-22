@@ -24,7 +24,7 @@ int buttonPins[6] = {3,4,5,6,7,8};
 void setup() {
   Serial.begin(9600);
   matrix.begin();
-  matrix.setBrightness(150);
+  matrix.setBrightness(100);
   for (int y = 0; y < MATRIX_HEIGHT; y++)
   {
     for (int x = 0; x < MATRIX_WIDTH; x++)
@@ -166,9 +166,9 @@ int xyToPixel(int x, int y)
   if (y % 2 == 0)
   {
     //Even rows
-    return y * MATRIX_WIDTH + x;
+    return y * MATRIX_WIDTH + (MATRIX_WIDTH - 1 - x);
   } else {
     //Odd rows
-    return y * MATRIX_WIDTH + (MATRIX_WIDTH - 1 - x);
+    return y * MATRIX_WIDTH + x;
   }
 }
