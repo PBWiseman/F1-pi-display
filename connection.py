@@ -42,7 +42,7 @@ def sendToArduino(driversToUpdate):
     for driver in driversToUpdate:
         print(driver)
         ser.write(driver.encode())
-        time.sleep(.05)
+        time.sleep(.1)
     ser.write("@".encode())
 
 def waitForInput():
@@ -53,11 +53,11 @@ def waitForInput():
             if screenPos != "":
                 driverNum = drivers.getDriverNumber(screenPos)
                 if driverNum != None:
-                    requests.get(f"http://fun-sharply-skylark.ngrok-free.app/players/{driverNum}", timeout=10)
+                    res = requests.get(f"http://fun-sharply-skylark.ngrok-free.app/players/{driverNum}", timeout=30)
+                    print(res)
+                ser.readline().decode('utf-8').strip() #I want to clear out the backlog after it opens so the server isnt flooded by requests
                 screenPos = ""
                 driverNum = ""
-                #wait for 2 seconds to not spam the computer with requests
-                time.sleep(2)
         except Exception as e:
             print(e)
             driverNum = ""
