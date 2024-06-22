@@ -4,22 +4,28 @@ import requests
 import drivers
 import threading
 
-
-try:
-    ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
-    print("Connected on port /dev/ttyACM0")
-    time.sleep(2)
-except:
-    try:
-        ser = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
-        print("Connected on port /dev/ttyACM1")
-        time.sleep(2)
-    except:
-        print("Error: No port found")
+ser = None
 
 def main():
+    connect()
     threading.Thread(target=run_Drivers_on_timer).start()
     threading.Thread(target=waitForInput).start()
+
+def connect():
+    global ser
+    try:
+        ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
+        print("Connected on port /dev/ttyACM0")
+        time.sleep(2)
+    except:
+        try:
+            ser = serial.Serial('/dev/ttyACM1', 9600, timeout=1)
+            print("Connected on port /dev/ttyACM1")
+            time.sleep(2)
+        except:
+            print("Error: No port found")
+
+
 
 #Runs every second in the background to get the top 6 drivers
 def run_Drivers_on_timer():
