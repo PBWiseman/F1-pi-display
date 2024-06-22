@@ -66,7 +66,8 @@ def setTopSix(driversToUpdate):
             for driverStored in drivers:
                 if driverStored['driver_number'] == driver['driver_number']:
                     driverStored['place'] = driver['position']
-                    driverStored['minisectors'] = convertSectorCodes(driver['sectors'])
+                    for minis in driver['sectors']:
+                        driverStored['minisectors'].append(convertSectorCodes(minis))
                     # If a driver doesn't have a screen position or its screen position is not in the available positions, assign it the first available screen position
                     if driverStored['screen_position'] == '' or driverStored['screen_position'] not in available_positions:
                         driverStored['screen_position'] = available_positions.pop(0)
