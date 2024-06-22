@@ -24,7 +24,7 @@ int buttonPins[6] = {3,4,5,6,7,8};
 void setup() {
   Serial.begin(9600);
   matrix.begin();
-  matrix.setBrightness(100);
+  matrix.setBrightness(5);
   for (int y = 0; y < MATRIX_HEIGHT; y++)
   {
     for (int x = 0; x < MATRIX_WIDTH; x++)
@@ -154,6 +154,8 @@ void printToScreen(String input[6], char sectors[6][5])
         case 'W':
           matrix.setPixelColor(currentPixel, matrix.Color(255,255,255));
           break;
+        default:
+          matrix.setPixelColor(currentPixel, matrix.Color(0,0,0));
       }
     }
   }
