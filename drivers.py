@@ -46,8 +46,6 @@ def setTopSix(driversToUpdate):
         available_positions = [0, 1, 2, 3, 4, 5]
         driverNumbers = [driver['driver_number'] for driver in driversToUpdate]
         
-        print(driversToUpdate)
-        
         # Reset screen positions and minisectors for all drivers
         for driverStored in drivers:
             driverStored['place'] = None
@@ -65,7 +63,7 @@ def setTopSix(driversToUpdate):
                 if driverStored['driver_number'] == driver_number:
                     driverStored['place'] = driver['position']
                     driverStored['minisectors'] = [convertSectorCodes(minis) for minis in driver['sectors']]
-                    if driverStored['screen_position'] is None or driverStored['screen_position'] not in available_positions:
+                    if driverStored['screen_position'] is None:
                         driverStored['screen_position'] = available_positions.pop(0)
         return True
     except Exception as e:
