@@ -1,27 +1,25 @@
 drivers = [
-    {'driver_number': "1", 'driver_name': 'Max Verstappen', 'driver_tla': 'VER', 'team_name': 'Red Bull Racing', 'team_tla': 'RBR', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "2", 'driver_name': 'Logan Sargeant', 'driver_tla': 'SAR', 'team_name': 'Williams', 'team_tla': 'WIL', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "3", 'driver_name': 'Daniel Ricciardo', 'driver_tla': 'RIC', 'team_name': 'Visa Cash App Racing Bulls', 'team_tla': 'VRB', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "4", 'driver_name': 'Lando Norris', 'driver_tla': 'NOR', 'team_name': 'McLaren', 'team_tla': 'MCL', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "10", 'driver_name': 'Pierre Gasly', 'driver_tla': 'GAS', 'team_name': 'Alpine', 'team_tla': 'ALP', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "11", 'driver_name': 'Sergio Perez', 'driver_tla': 'PER', 'team_name': 'Red Bull Racing', 'team_tla': 'RBR', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "14", 'driver_name': 'Fernando Alonso', 'driver_tla': 'ALO', 'team_name': 'Aston Martin', 'team_tla': 'AMR', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "16", 'driver_name': 'Charles Leclerc', 'driver_tla': 'LEC', 'team_name': 'Ferrari', 'team_tla': 'FER', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "18", 'driver_name': 'Lance Stroll', 'driver_tla': 'STR', 'team_name': 'Aston Martin', 'team_tla': 'AMR', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "20", 'driver_name': 'Kevin Magnussen', 'driver_tla': 'MAG', 'team_name': 'Haas', 'team_tla': 'HAS', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "22", 'driver_name': 'Yuki Tsunoda', 'driver_tla': 'TSU', 'team_name': 'Visa Cash App Racing Bulls', 'team_tla': 'VRB', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "23", 'driver_name': 'Alex Albon', 'driver_tla': 'ALB', 'team_name': 'Williams', 'team_tla': 'WIL', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "24", 'driver_name': 'Zhou Guanyu', 'driver_tla': 'ZHO', 'team_name': 'Kick Sauber', 'team_tla': 'SAU', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "27", 'driver_name': 'Nico Hulkenberg', 'driver_tla': 'HUL', 'team_name': 'Haas', 'team_tla': 'HAS', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "31", 'driver_name': 'Esteban Ocon', 'driver_tla': 'OCO', 'team_name': 'Alpine', 'team_tla': 'ALP', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "44", 'driver_name': 'Lewis Hamilton', 'driver_tla': 'HAM', 'team_name': 'Mercedes', 'team_tla': 'MER', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "55", 'driver_name': 'Carlos Sainz Jr', 'driver_tla': 'SAI', 'team_name': 'Ferrari', 'team_tla': 'FER', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "63", 'driver_name': 'George Russell', 'driver_tla': 'RUS', 'team_name': 'Mercedes', 'team_tla': 'MER', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "77", 'driver_name': 'Valtteri Bottas', 'driver_tla': 'BOT', 'team_name': 'Kick Sauber', 'team_tla': 'SAU', 'screen_position': '', 'place': '', 'minisectors': []},
-    {'driver_number': "81", 'driver_name': 'Oscar Piastri', 'driver_tla': 'PIA', 'team_name': 'McLaren', 'team_tla': 'MCL', 'screen_position': '', 'place': '', 'minisectors': []}
+    {'driver_number': 1, 'driver_tla': 'VER', 'team_tla': 'RBR', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 2, 'driver_tla': 'SAR', 'team_tla': 'WIL', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 3, 'driver_tla': 'RIC', 'team_tla': 'VRB', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 4, 'driver_tla': 'NOR', 'team_tla': 'MCL', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 10, 'driver_tla': 'GAS', 'team_tla': 'ALP', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 11, 'driver_tla': 'PER', 'team_tla': 'RBR', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 14, 'driver_tla': 'ALO', 'team_tla': 'AMR', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 16, 'driver_tla': 'LEC', 'team_tla': 'FER', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 18, 'driver_tla': 'STR', 'team_tla': 'AMR', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 20, 'driver_tla': 'MAG', 'team_tla': 'HAS', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 22, 'driver_tla': 'TSU', 'team_tla': 'VRB', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 23, 'driver_tla': 'ALB', 'team_tla': 'WIL', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 24, 'driver_tla': 'ZHO', 'team_tla': 'SAU', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 27, 'driver_tla': 'HUL', 'team_tla': 'HAS', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 31, 'driver_tla': 'OCO', 'team_tla': 'ALP', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 44, 'driver_tla': 'HAM', 'team_tla': 'MER', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 55, 'driver_tla': 'SAI', 'team_tla': 'FER', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 63, 'driver_tla': 'RUS', 'team_tla': 'MER', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 77, 'driver_tla': 'BOT', 'team_tla': 'SAU', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 81, 'driver_tla': 'PIA', 'team_tla': 'MCL', 'screen_position': None, 'place': None, 'minisectors': []}
 ]
-
-
 
 def getDriverNumber(screen_position):
     for driver in drivers:
@@ -32,7 +30,8 @@ def getDriverNumber(screen_position):
 def formatDriver(driver_number):
     for driver in drivers:
         if driver['driver_number'] == driver_number:
-            return f"P{str(driver['place']).ljust(2)} - {driver['team_tla']} - {driver['driver_tla']}"
+            place_str = str(driver['place']) if driver['place'] is not None else ''
+            return f"P{place_str.ljust(2)} - {driver['team_tla']} - {driver['driver_tla']}"
     return None
 
 def getDriverTLA(driver_number):
@@ -44,32 +43,29 @@ def getDriverTLA(driver_number):
 def setTopSix(driversToUpdate):
     try:
         # Create a list of available screen positions
-        available_positions = [0,1,2,3,4,5]
-        driverNumbers = []
-        for drivers1 in driversToUpdate:
-            driverNumbers.append(drivers1['driver_number'])
-            
+        available_positions = [0, 1, 2, 3, 4, 5]
+        driverNumbers = [driver['driver_number'] for driver in driversToUpdate]
+        
         print(driversToUpdate)
-
-        # Iterate over the drivers list
+        
+        # Reset screen positions and minisectors for all drivers
         for driverStored in drivers:
-            driverStored['place'] = ''
+            driverStored['place'] = None
             driverStored['minisectors'] = []
             if driverStored['driver_number'] not in driverNumbers:
-                driverStored['screen_position'] = ''
+                driverStored['screen_position'] = None
             else:
                 if driverStored['screen_position'] in available_positions:
                     available_positions.remove(driverStored['screen_position'])
 
-        # Iterate over the driversToUpdate list
+        # Update drivers with new data
         for driver in driversToUpdate:
+            driver_number = driver['driver_number']
             for driverStored in drivers:
-                if driverStored['driver_number'] == driver['driver_number']:
+                if driverStored['driver_number'] == driver_number:
                     driverStored['place'] = driver['position']
-                    for minis in driver['sectors']:
-                        driverStored['minisectors'].append(convertSectorCodes(minis))
-                    # If a driver doesn't have a screen position or its screen position is not in the available positions, assign it the first available screen position
-                    if driverStored['screen_position'] == '' or driverStored['screen_position'] not in available_positions:
+                    driverStored['minisectors'] = [convertSectorCodes(minis) for minis in driver['sectors']]
+                    if driverStored['screen_position'] is None or driverStored['screen_position'] not in available_positions:
                         driverStored['screen_position'] = available_positions.pop(0)
         return True
     except Exception as e:
@@ -84,9 +80,7 @@ def convertSectorCodes(minisector):
             return 'G'
         case 2051: #Purple
             return 'P'
-        case 2052: #Stopped
-            return 'R' 
-        case 2068: #Stopped
+        case 2052 | 2068: #Stopped
             return 'R' 
         case 2064: #Blue
             return 'B'
@@ -94,11 +88,10 @@ def convertSectorCodes(minisector):
             return 'W'
         
 def getTopSix():
-    output = ["","","","","",""]
+    output = ["", "", "", "", "", ""]
     for driver in drivers:
-        if driver['screen_position'] != '':
-            output[int(driver['screen_position'])] = formatDriver(driver['driver_number']) + "%"
-            for mini in driver['minisectors']:
-                output[int(driver['screen_position'])] += mini
-            output[int(driver['screen_position'])] += "&"
+        if driver['screen_position'] is not None:
+            output[driver['screen_position']] = formatDriver(driver['driver_number']) + "%"
+            output[driver['screen_position']] += "".join(driver['minisectors'])
+            output[driver['screen_position']] += "&"
     return output

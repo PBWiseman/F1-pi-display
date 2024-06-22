@@ -53,7 +53,6 @@ def sendToArduino(driversToUpdate):
         if ser.in_waiting > 0:
             response = ser.readline().decode('utf-8').strip()
             if response:
-                #Response never coming back from arduino. Not sure why
                 print("Response Arduino:", response)
     sending = False
 

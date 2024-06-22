@@ -74,7 +74,7 @@ def updateDrivers():
     for driver in top_6_drivers:
         driver_info = {
             'position': driver['position'],
-            'driver_number': driver['driver_number'],
+            'driver_number': int(driver['driver_number']),
             'sectors': driver['sectors']
         }
         top_6_info.append(driver_info)
@@ -85,6 +85,7 @@ def updateDrivers():
 
 #The sorting method wasn't working well so I asked chatGPT to help. It took many back and forward attempts to get it working so it would take too long to list the exact prompts
 #The original request was to order it in the following priority
+# Greater than 1 sector
 # Least blue sectors
 # Most purple sectors
 # Most green sectors
@@ -121,8 +122,7 @@ def getSectorTimesOrdered():
         })
 
     # Sort driver_sector_info list based on the specified priorities
-    sorted_driver_sector_info = sorted(driver_sector_info, key=lambda x: (x['blue_count'], -x['purple_count'], -x['green_count'], -x['total_count']))
-    #Remove all but the 5 most recent sectors
+    sorted_driver_sector_info = sorted(driver_sector_info, key=lambda x: (x['total_count'] == 0, x['blue_count'], -x['purple_count'], -x['green_count'], -x['total_count']))    #Remove all but the 5 most recent sectors
     for driver in sorted_driver_sector_info:
         driver['sectors'] = driver['sectors'][-5:]
     return sorted_driver_sector_info
