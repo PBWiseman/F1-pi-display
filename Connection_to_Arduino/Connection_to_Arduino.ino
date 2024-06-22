@@ -113,7 +113,6 @@ void input()
       }
     }
   }
-  Serial.println("Done");
   printToScreen(message, sectors);
 }
 

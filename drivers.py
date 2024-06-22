@@ -23,8 +23,9 @@ drivers = [
 
 def getDriverNumber(screen_position):
     for driver in drivers:
-        if driver['screen_position'] == screen_position:
-            return driver['driver_number']
+        if driver['screen_position'] is not None:
+            if driver['screen_position'] == int(screen_position):
+                return driver['driver_number']
     return None
 
 def formatDriver(driver_number):
