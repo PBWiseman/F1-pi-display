@@ -25,15 +25,7 @@ void setup() {
   Serial.begin(9600);
   matrix.begin();
   matrix.setBrightness(5);
-  for (int y = 0; y < MATRIX_HEIGHT; y++)
-  {
-    for (int x = 0; x < MATRIX_WIDTH; x++)
-    {
-      int pixel = xyToPixel(x, y);
-      matrix.setPixelColor(pixel, matrix.Color(0,0,0)); //Clear screen
-    }
-  }
-  matrix.show();
+  clearLED();
   for(int i = 0; i < 6; i++)
   {
     pinMode(buttonPins[i], INPUT_PULLUP);
@@ -44,9 +36,9 @@ void setup() {
     screens[i].backlight();
     screens[i].clear();
     screens[i].setCursor(0,0);
-    screens[i].print("Test");
+    screens[i].print("Waiting...");
     screens[i].setCursor(0,1);
-    screens[i].print("Test");
+    screens[i].print("Waiting...");
   }
 }
 
@@ -73,6 +65,19 @@ void loop() {
   } 
 }
 
+void clearLED()
+{
+  for (int y = 0; y < MATRIX_HEIGHT; y++)
+  {
+    for (int x = 0; x < MATRIX_WIDTH; x++)
+    {
+      int pixel = xyToPixel(x, y);
+      matrix.setPixelColor(pixel, matrix.Color(0,0,0)); //Clear screen
+    }
+  }
+  matrix.show();
+}
+
 void input()
 {
   String message[6];
@@ -87,6 +92,17 @@ void input()
       char receivedChar = Serial.read();
       if (receivedChar == '@')
       {
+        i++;
+        //This is filling in any blank spaces with a message that all other drivers are in the pits
+        for(i; i < 6; i++)
+        {
+          message[i] = "Not on track";
+          //Adding blank sectors for blank drivers
+          for(j; j < 5; j++)
+          {
+            sectors[i][j] = ' ';
+          }
+        }
         break;
       }
       else if (receivedChar == '%')
@@ -96,6 +112,11 @@ void input()
       }
       else if(receivedChar == '&')
       {
+        //Adding blank sectors if there aren't 5
+        for(j; j < 5; j++)
+        {
+          sectors[i][j] = ' ';
+        }
         i++;
         sectorsAssigning = false;
       }
@@ -129,6 +150,7 @@ void printToScreen(String input[6], char sectors[6][5])
     screens[i].print(input[line]);
     line++;
   }
+  clearLED();
   for (int y = 0; y < 6; y++)
   {
     for (int x = 0; x < 5; x++)
