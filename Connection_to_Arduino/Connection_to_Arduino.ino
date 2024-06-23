@@ -4,7 +4,7 @@
 #include <Adafruit_NeoPixel.h>
 #include <avr/wdt.h>
 
-
+//Array of the three screens
 LiquidCrystal_I2C screens[3] =
 {
   LiquidCrystal_I2C(0x27, 16, 2),
@@ -19,6 +19,8 @@ LiquidCrystal_I2C screens[3] =
 
 Adafruit_NeoPixel matrix = Adafruit_NeoPixel(NUM_PIXELS, MATRIX_PIN, NEO_GRB + NEO_KHZ800);
 
+//This stores if each of the 6 buttons are currently pressed
+//This probably isn't optimised but was my solution for only having them press once
 bool buttonStates[6] = {false, false, false, false, false, false};
 
 int buttonPins[6] = {3,4,5,6,7,8};
@@ -47,10 +49,19 @@ void setup() {
 
 void loop() {
 
+  //If there is data ready to be accepted
   if(Serial.available() > 0)
   {
     input();
   }
+  buttonChecking();
+  wdt_reset();
+}
+
+//Checks if there are buttons pressed and sends the request with the button number to the Pi
+void buttonChecking()
+{
+
   for(int i = 0; i < 6; i++)
   {
     if (digitalRead(buttonPins[i]) == LOW && buttonStates[i] == false)
@@ -66,9 +77,9 @@ void loop() {
       buttonStates[i] = false;
     }
   }
-  wdt_reset();
 }
 
+//Clears the LED strips
 void clearLED()
 {
   for (int y = 0; y < MATRIX_HEIGHT; y++)
@@ -82,6 +93,8 @@ void clearLED()
   matrix.show();
 }
 
+//Recieves the data from the Pi
+//This wasn't done as efficiently as I could but it works pretty well. I do want to rework it at some point.
 void input()
 {
   String message[6];
@@ -94,6 +107,7 @@ void input()
     if(Serial.available() > 0)
     { 
       char receivedChar = Serial.read();
+      //If @ then the message has ended
       if (receivedChar == '@')
       {
         //This is filling in any blank spaces with a message that all other drivers are in the pits
@@ -108,11 +122,13 @@ void input()
         }
         break;
       }
+      //If % then the text is over and it is sending sectors
       else if (receivedChar == '%')
       {
         sectorsAssigning = true;
         j = 0;
       }
+      //If & then the line is over and move to the new one
       else if(receivedChar == '&')
       {
         //Adding blank sectors if there aren't 5
@@ -123,6 +139,7 @@ void input()
         i++;
         sectorsAssigning = false;
       }
+      //Otherwise just continue filling in what it was writing to
       else
       {
         if (sectorsAssigning)
@@ -140,6 +157,7 @@ void input()
   printToScreen(message, sectors);
 }
 
+//Takes the input and the sectors and prints them on the screen and on the LED strips
 void printToScreen(String input[6], char sectors[6][5])
 {
   wdt_reset();
@@ -154,7 +172,7 @@ void printToScreen(String input[6], char sectors[6][5])
     screens[i].print(input[line]);
     line++;
   }
-  clearLED();
+  //Goes through the grid of LED codes and applies them to the screen
   for (int y = 0; y < 6; y++)
   {
     for (int x = 0; x < 5; x++)
@@ -189,6 +207,7 @@ void printToScreen(String input[6], char sectors[6][5])
 }
 
 //Credit for this to Connell from our LED Project
+//Converts the X and Y to a screen position and flips every other line to account for the strip running back and forwards
 int xyToPixel(int x, int y)
 {
   if (y % 2 == 0)

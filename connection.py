@@ -50,7 +50,7 @@ def getDrivers():
         print(e)
         return False
 
-
+#Sends the drivers to the arduino
 def sendToArduino(driversToUpdate):
     try:
         for driver in driversToUpdate:
@@ -63,6 +63,7 @@ def sendToArduino(driversToUpdate):
         print(e)
         return False
 
+#Waits for input from the arduino and sends the driver request to the ngrok server
 def waitForInput():
     screenPos = ""
     while(True):
@@ -75,10 +76,10 @@ def waitForInput():
                     print(res)
                 ser.readline().decode('utf-8').strip() #I want to clear out the backlog after it opens so the server isnt flooded by requests
                 screenPos = ""
-                driverNum = ""
+                driverNum = None
         except Exception as e:
             print(e)
-            driverNum = ""
+            driverNum = None
             screenPos = ""
 
 main()
