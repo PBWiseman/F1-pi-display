@@ -45,8 +45,10 @@ def setTopSix(driversToUpdate):
     try:
         # Create a list of available screen positions
         available_positions = [0, 1, 2, 3, 4, 5]
-        driverNumbers = [driver['driver_number'] for driver in driversToUpdate]
-        
+        #Getting a list of the non zero driver numbers
+        #Python is weird
+        driverNumbers = [driver['driver_number'] for driver in driversToUpdate if driver['driver_number'] != 0]
+
         # Reset screen positions and minisectors for all drivers
         for driverStored in drivers:
             driverStored['place'] = None
@@ -60,6 +62,8 @@ def setTopSix(driversToUpdate):
         # Update drivers with new data
         for driver in driversToUpdate:
             driver_number = driver['driver_number']
+            if driver_number == 0:
+                continue  # Skip blank drivers
             for driverStored in drivers:
                 if driverStored['driver_number'] == driver_number:
                     driverStored['place'] = driver['position']
