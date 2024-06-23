@@ -7,10 +7,12 @@ import threading
 ser = None
 
 def main():
+    #Connects to the arduino then starts the data fetching and waiting for a response from the arduino
     connect()
     threading.Thread(target=run_Drivers_on_timer).start()
     threading.Thread(target=waitForInput).start()
 
+#Gets the port that the arduino connects on. It changes with no apparent reason so I have a double try except block to test both options.
 def connect():
     global ser
     try:
@@ -27,13 +29,18 @@ def connect():
 
 
 
-#Runs every second in the background to get the top 6 drivers
+#Runs repeatedly to get the top 6 drivers and send them to the arduino
 def run_Drivers_on_timer():
     while True:
-        getDrivers()
-        sendToArduino(drivers.getTopSix())
+        if not getDrivers():
+            print("Web server not online")
+        #If the connection to the arduino isn't working it will try to reselect the port
+        if not sendToArduino(drivers.getTopSix()):
+            print("Arduino not connected")
+            connect()
         time.sleep(1)
 
+#Gets the top 6 drivers from the ngrok site the computer is hosting
 def getDrivers():
     try:
         response = requests.get("http://fun-sharply-skylark.ngrok-free.app/sectors/topsix", timeout=5)
@@ -45,11 +52,16 @@ def getDrivers():
 
 
 def sendToArduino(driversToUpdate):
-    for driver in driversToUpdate:
-        print(driver)
-        ser.write(driver.encode())
-        time.sleep(.1)
-    ser.write("@".encode())
+    try:
+        for driver in driversToUpdate:
+            print(driver)
+            ser.write(driver.encode())
+            time.sleep(.1)
+        ser.write("@".encode())
+        return True
+    except Exception as e:
+        print(e)
+        return False
 
 def waitForInput():
     screenPos = ""
