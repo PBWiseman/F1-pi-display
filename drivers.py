@@ -97,4 +97,7 @@ def getTopSix():
             output[driver['screen_position']] = formatDriver(driver['driver_number']) + "%"
             output[driver['screen_position']] += "".join(driver['minisectors'])
             output[driver['screen_position']] += "&"
+    
+    # Remove all empty strings
+    output = [item for item in output if item != ""]
     return output
