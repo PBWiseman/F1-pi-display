@@ -32,7 +32,7 @@ def run_Drivers_on_timer():
     while True:
         getDrivers()
         sendToArduino(drivers.getTopSix())
-        time.sleep(4)
+        time.sleep(1)
 
 def getDrivers():
     try:

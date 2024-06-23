@@ -92,13 +92,12 @@ void input()
       char receivedChar = Serial.read();
       if (receivedChar == '@')
       {
-        i++;
         //This is filling in any blank spaces with a message that all other drivers are in the pits
         for(i; i < 6; i++)
         {
           message[i] = "Not on track";
           //Adding blank sectors for blank drivers
-          for(j; j < 5; j++)
+          for(int j = 0; j < 5; j++)
           {
             sectors[i][j] = ' ';
           }
