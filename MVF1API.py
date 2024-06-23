@@ -43,6 +43,7 @@ def openWindow(driverNumber):
                     createdPlayerID = None
         response = mvf1.player_create(content_id = contentId, driver_number = driverNumber, fullscreen = True, always_on_top = True)
         createdPlayerID = response['data']['playerCreate']
+        #The player takes a variable amount of time to be selectable. This ensures it will be grabbed asap
         retries = 10
         interval = .5
         for _ in range(retries):
@@ -69,6 +70,14 @@ def updateDrivers():
         return sectorTimes
     #Just need the top 6 since I only have 6 slots
     top_6_drivers = sectorTimes[:6]
+
+    #If there is less than 6 drivers then fill the rest with empty data
+    while len(top_6_drivers) < 6:
+        top_6_drivers.append({
+            'driver_number': 0,
+            'position': 0,
+            'sectors': []
+        })
     
     top_6_info = []
     for driver in top_6_drivers:
@@ -85,7 +94,6 @@ def updateDrivers():
 
 #The sorting method wasn't working well so I asked chatGPT to help. It took many back and forward attempts to get it working so it would take too long to list the exact prompts
 #The original request was to order it in the following priority
-# Greater than 1 sector
 # Least blue sectors
 # Most purple sectors
 # Most green sectors
@@ -101,6 +109,14 @@ def getSectorTimesOrdered():
         minisector_codes = driver_data['Sectors']
         # Filter out zero sectors
         non_zero_sectors = [code for code in minisector_codes if code != 0]
+
+        #If the driver is not in the qualifying session or is dnf then skip them
+        if not non_zero_sectors:
+            continue
+
+        # If the driver is currently in the pits then remove them
+        if non_zero_sectors[-1] == 2064:
+            continue
 
         # Count purple (2051), green (2049), blue (2064) sectors
         purple_count = non_zero_sectors.count(2051)
@@ -122,7 +138,8 @@ def getSectorTimesOrdered():
         })
 
     # Sort driver_sector_info list based on the specified priorities
-    sorted_driver_sector_info = sorted(driver_sector_info, key=lambda x: (x['total_count'] == 0, x['blue_count'], -x['purple_count'], -x['green_count'], -x['total_count']))    #Remove all but the 5 most recent sectors
+    sorted_driver_sector_info = sorted(driver_sector_info, key=lambda x: (x['blue_count'], -x['purple_count'], -x['green_count'], -x['total_count']))    #Remove all but the 5 most recent sectors
+    #Removing all but the last 5 sectors
     for driver in sorted_driver_sector_info:
         driver['sectors'] = driver['sectors'][-5:]
     return sorted_driver_sector_info
