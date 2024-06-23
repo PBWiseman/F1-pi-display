@@ -2,6 +2,8 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #include <Adafruit_NeoPixel.h>
+#include <avr/wdt.h>
+
 
 LiquidCrystal_I2C screens[3] =
 {
@@ -40,6 +42,7 @@ void setup() {
     screens[i].setCursor(0,1);
     screens[i].print("Waiting...");
   }
+  wdt_enable(WDTO_2S);
 }
 
 void loop() {
@@ -62,7 +65,8 @@ void loop() {
     {
       buttonStates[i] = false;
     }
-  } 
+  }
+  wdt_reset();
 }
 
 void clearLED()
@@ -138,6 +142,7 @@ void input()
 
 void printToScreen(String input[6], char sectors[6][5])
 {
+  wdt_reset();
   int line = 0;
   for (int i = 0; i < 3; i++)
   {
