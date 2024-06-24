@@ -53,6 +53,8 @@ def openWindow(driverNumber):
         mvf1.player_sync_to_commentary()
         return True
     except Exception as e:
+        createdPlayer = None
+        createdPlayerID = None
         print(str(e))
         return False
     

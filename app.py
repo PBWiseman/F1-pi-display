@@ -8,7 +8,7 @@
 
 # --Every time you want to run the server--
 # Start ngrok and run: ngrok http --domain=fun-sharply-skylark.ngrok-free.app 5000
-# Run: flask run
+# Run in vs code terminal: flask run
 # Open a broadcast stream and a live timing screen in Multiviewer
 # If you want to run the server with debug updating run: flask run --debug
 
