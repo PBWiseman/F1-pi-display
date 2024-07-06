@@ -6,6 +6,10 @@
 # Run: pip install requests
 # Run: pip install mvf1
 
+# --Making changes to the project--
+# Run: .venv\Scripts\activate
+# To upgrade pip run: python.exe -m pip install --upgrade pip
+
 # --Every time you want to run the server--
 # Start ngrok and run: ngrok http --domain=fun-sharply-skylark.ngrok-free.app 5000
 # Run in vs code terminal: flask run
