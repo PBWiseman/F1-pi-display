@@ -25,9 +25,9 @@ It displays 6 selected drivers with their last 5 minisectors and has buttons to 
 
 ## Documentation
 
-Requests: <https://pypi.org/project/requests/>
-Flask: <https://flask.palletsprojects.com/en/3.0.x/>
-Multiviewer API: <https://mvf1.readthedocs.io/en/latest/MultiViewerForF1.html>
+- Requests: <https://pypi.org/project/requests/>
+- Flask: <https://flask.palletsprojects.com/en/3.0.x/>
+- Multiviewer API: <https://mvf1.readthedocs.io/en/latest/MultiViewerForF1.html>
 
 ## Future updates
 
