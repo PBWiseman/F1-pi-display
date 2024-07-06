@@ -1,6 +1,6 @@
 # F1 Pi Display
 
-This is a project for the Embedded Systems paper at Otago Polytechnic in Semester 2 2024.
+This is a project for the Embedded Systems paper at Otago Polytechnic in Semester 1 2024.
 It uses a computer streaming MultiViewer and running a Flask app hosted on ngrok, a raspberry pi, an arduino, 3 LCD screens, 6 buttons, and 6 LCD strips of 5 length.
 It displays 6 selected drivers with their last 5 minisectors and has buttons to select a driver to view.
 
