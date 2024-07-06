@@ -6,12 +6,9 @@ It displays 6 selected drivers with their last 5 minisectors and has buttons to 
 
 ## Setting up a new computer
 
-- Install Python and Pip if not installed yet
-- Run: py -3 -m venv .venv
-- Run: .venv\Scripts\activate
-- Run: pip install Flask
-- Run: pip install requests
-- Run: pip install mvf1
+- Install Python, Pip and pipenv (pip install pipenv --user) if not installed yet
+- Run: pipenv install
+- Run: pipenv shell
 
 ## Every time you want to run the server
 
@@ -19,6 +16,12 @@ It displays 6 selected drivers with their last 5 minisectors and has buttons to 
 - Run: flask run
 - Open a broadcast stream and a live timing screen in Multiviewer
 - If you want to run the server with debug updating run: flask run --debug
+
+## Other notes
+
+- As of 6/07/2024 the latest release of MVF1 that will install is 1.1.2
+- To upgrade a package without committing it to pipenv run: pipenv upgrade -package-
+- To update the pipenv with the upgrade run: pipenv update -package-
 
 ## Documentation
 
