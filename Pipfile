@@ -6,7 +6,7 @@ name = "pypi"
 [packages]
 requests = "*"
 flask = "*"
-mvf1 = "==1.1.2"
+mvf1 = "*"
 
 [dev-packages]
 

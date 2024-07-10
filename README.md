@@ -19,7 +19,6 @@ It displays 6 selected drivers with their last 5 minisectors and has buttons to 
 
 ## Other notes
 
-- As of 6/07/2024 the latest release of MVF1 that will install is 1.1.2
 - To upgrade a package without committing it to pipenv run: pipenv upgrade -package-
 - To update the pipenv with the upgrade run: pipenv update -package-
 
