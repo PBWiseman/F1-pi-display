@@ -4,6 +4,8 @@ This is a project for the Embedded Systems paper at Otago Polytechnic in Semeste
 It uses a computer streaming MultiViewer and running a Flask app hosted on ngrok, a raspberry pi, an arduino, 3 LCD screens, 6 buttons, and 6 LCD strips of 5 length.
 It displays 6 selected drivers with their last 5 minisectors and has buttons to select a driver to view.
 
+Most of this readme is reminders for myself. Not really expecting anyone else to see or be interested in this project but if you are and need any more info about setting it up feel free to send me a message!
+
 ## Setting up a new computer
 
 - Install Python, Pip and pipenv (pip install pipenv --user) if not installed yet
@@ -21,6 +23,7 @@ It displays 6 selected drivers with their last 5 minisectors and has buttons to 
 
 - To upgrade a package without committing it to pipenv run: pipenv upgrade -package-
 - To update the pipenv with the upgrade run: pipenv update -package-
+- To install new packages use pipenv install -package-
 
 ## Documentation
 
