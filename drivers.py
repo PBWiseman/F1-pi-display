@@ -1,7 +1,6 @@
 #Current driver data
 drivers = [
     {'driver_number': 1, 'driver_tla': 'VER', 'team_tla': 'RBR', 'screen_position': None, 'place': None, 'minisectors': []},
-    {'driver_number': 2, 'driver_tla': 'SAR', 'team_tla': 'WIL', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 3, 'driver_tla': 'RIC', 'team_tla': 'VRB', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 4, 'driver_tla': 'NOR', 'team_tla': 'MCL', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 10, 'driver_tla': 'GAS', 'team_tla': 'ALP', 'screen_position': None, 'place': None, 'minisectors': []},
@@ -15,6 +14,7 @@ drivers = [
     {'driver_number': 24, 'driver_tla': 'ZHO', 'team_tla': 'SAU', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 27, 'driver_tla': 'HUL', 'team_tla': 'HAS', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 31, 'driver_tla': 'OCO', 'team_tla': 'ALP', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 43, 'driver_tla': 'COL', 'team_tla': 'WIL', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 44, 'driver_tla': 'HAM', 'team_tla': 'MER', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 55, 'driver_tla': 'SAI', 'team_tla': 'FER', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 63, 'driver_tla': 'RUS', 'team_tla': 'MER', 'screen_position': None, 'place': None, 'minisectors': []},
