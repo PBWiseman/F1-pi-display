@@ -31,6 +31,12 @@ Most of this readme is reminders for myself. Not really expecting anyone else to
 - Flask: <https://flask.palletsprojects.com/en/3.0.x/>
 - Multiviewer API: <https://mvf1.readthedocs.io/en/latest/MultiViewerForF1.html>
 
+## Breadboard layout
+
+This is the layout of the breadboards, without the case, for Arduino section of the project. The Arduino is connected to the Pi by a USB cable
+![Breadboard-Layout](https://github.com/user-attachments/assets/43ecf02f-76b0-43be-b8bd-1d156154dab9)
+
+
 ## Future updates
 
 - 3D printed case
@@ -43,4 +49,4 @@ Most of this readme is reminders for myself. Not really expecting anyone else to
   - Session time
   - LED Matrix display for racing condition flags
   - Laps remaining
-- Removing Arduino
+- Removing Arduino and making the device Pi only
