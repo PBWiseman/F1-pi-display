@@ -1,6 +1,7 @@
 # F1 Pi Display
 
 This is a project that was for originally for the Embedded Systems paper at Otago Polytechnic in Semester 1 2024. I have decided to contunue working on it. Due to life being so busy at the moment I've had very little time to work on it but after my graduation I intend to fully overhaul the code and the design.
+
 It uses a computer streaming MultiViewer and running a Flask app hosted on ngrok, a raspberry pi, an arduino, 3 LCD screens, 6 buttons, and 6 LCD strips of 5 length.
 It displays 6 selected drivers with their last 5 minisectors and has buttons to select a driver to view.
 
