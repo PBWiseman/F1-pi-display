@@ -2,24 +2,24 @@
 drivers = [
     {'driver_number': 1, 'driver_tla': 'VER', 'team_tla': 'RBR', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 4, 'driver_tla': 'NOR', 'team_tla': 'MCL', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 5, 'driver_tla': 'BOR', 'team_tla': 'SAU', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 6, 'driver_tla': 'HAD', 'team_tla': 'VRB', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 10, 'driver_tla': 'GAS', 'team_tla': 'ALP', 'screen_position': None, 'place': None, 'minisectors': []},
-    {'driver_number': 11, 'driver_tla': 'PER', 'team_tla': 'RBR', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 12, 'driver_tla': 'ANT', 'team_tla': 'MER', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 14, 'driver_tla': 'ALO', 'team_tla': 'AMR', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 16, 'driver_tla': 'LEC', 'team_tla': 'FER', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 18, 'driver_tla': 'STR', 'team_tla': 'AMR', 'screen_position': None, 'place': None, 'minisectors': []},
-    {'driver_number': 20, 'driver_tla': 'MAG', 'team_tla': 'HAS', 'screen_position': None, 'place': None, 'minisectors': []},
-    {'driver_number': 22, 'driver_tla': 'TSU', 'team_tla': 'VRB', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 22, 'driver_tla': 'TSU', 'team_tla': 'RBR', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 23, 'driver_tla': 'ALB', 'team_tla': 'WIL', 'screen_position': None, 'place': None, 'minisectors': []},
-    {'driver_number': 24, 'driver_tla': 'ZHO', 'team_tla': 'SAU', 'screen_position': None, 'place': None, 'minisectors': []},
-    {'driver_number': 27, 'driver_tla': 'HUL', 'team_tla': 'HAS', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 27, 'driver_tla': 'HUL', 'team_tla': 'SAU', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 30, 'driver_tla': 'LAW', 'team_tla': 'VRB', 'screen_position': None, 'place': None, 'minisectors': []},
-    {'driver_number': 31, 'driver_tla': 'OCO', 'team_tla': 'ALP', 'screen_position': None, 'place': None, 'minisectors': []},
-    {'driver_number': 43, 'driver_tla': 'COL', 'team_tla': 'WIL', 'screen_position': None, 'place': None, 'minisectors': []},
-    {'driver_number': 44, 'driver_tla': 'HAM', 'team_tla': 'MER', 'screen_position': None, 'place': None, 'minisectors': []},
-    {'driver_number': 55, 'driver_tla': 'SAI', 'team_tla': 'FER', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 31, 'driver_tla': 'OCO', 'team_tla': 'HAS', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 43, 'driver_tla': 'COL', 'team_tla': 'ALP', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 44, 'driver_tla': 'HAM', 'team_tla': 'FER', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 55, 'driver_tla': 'SAI', 'team_tla': 'WIL', 'screen_position': None, 'place': None, 'minisectors': []},
     {'driver_number': 63, 'driver_tla': 'RUS', 'team_tla': 'MER', 'screen_position': None, 'place': None, 'minisectors': []},
-    {'driver_number': 77, 'driver_tla': 'BOT', 'team_tla': 'SAU', 'screen_position': None, 'place': None, 'minisectors': []},
-    {'driver_number': 81, 'driver_tla': 'PIA', 'team_tla': 'MCL', 'screen_position': None, 'place': None, 'minisectors': []}
+    {'driver_number': 81, 'driver_tla': 'PIA', 'team_tla': 'MCL', 'screen_position': None, 'place': None, 'minisectors': []},
+    {'driver_number': 87, 'driver_tla': 'BEA', 'team_tla': 'HAS', 'screen_position': None, 'place': None, 'minisectors': []}
 ]
 
 #When given a screen position returns the driver number on that position
