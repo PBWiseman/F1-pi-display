@@ -1,13 +1,13 @@
 # F1 Pi Display
 
-This is a project that was for originally for the Embedded Systems paper at Otago Polytechnic in Semester 1 2024. The hardware was dissasembled during my recent move and I currently don't have the money to buy the parts I want to upgrade it. I still intend to resume development on it but at the moment it is not functioning.
+This is a project that was for originally for the Embedded Systems paper at Otago Polytechnic in Semester 1 2024. The hardware was dissasembled during my recent move and I currently don't have the money to buy the parts I want to upgrade it. I still intend to resume development on it but at the moment it is not functioning. The code hasn't been updated since that time and so will likely also be broken. A lot of it was made in a time crunch to get the project functional for a showcase so I intend to fully overhaul it eventually.
 
 The changes to F1TV subscriptions also likely break the driver POV feature if you only have a pro instead of a premium subscription.
 
 The original device used a computer streaming MultiViewer and running a Flask app hosted on ngrok, a raspberry pi, an arduino, 3 LCD screens, 6 buttons, and 6 LCD strips of 5 length.
 It displays 6 selected drivers with their last 5 minisectors and has buttons to select a driver to view. I have a list of intended changes below for when I am able to buy new parts and resume development.
 
-Most of this readme is reminders on setup and development for myself. If you are interested in this and want any more info feel free to send me a message!
+Most of this readme is reminders on setup and development for myself. If you are interested in this and want any more info feel free to send me a message or simply fork the repo and make your own changes to it.
 
 ## Setting up a new computer
 
@@ -17,7 +17,7 @@ Most of this readme is reminders on setup and development for myself. If you are
 
 ## Every time you want to run the server
 
-- Start ngrok and run: ngrok http --domain=fun-sharply-skylark.ngrok-free.app 5000
+- Start ngrok and run server
 - Run: flask run
 - Open a broadcast stream and a live timing screen in Multiviewer
 - If you want to run the server with debug updating run: flask run --debug
